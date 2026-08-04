@@ -935,6 +935,9 @@ section{
 
 .email-info a:hover { color: var(--accent); }
 
+.email-color{
+    color: var(--text-secondary);
+}
 
 
 .loc-box{
