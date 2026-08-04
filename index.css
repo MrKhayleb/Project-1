@@ -4,6 +4,12 @@
     margin: 0;
 }
 
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+}
+
 body {
     background-color: #080C16;
     width: 100%;
@@ -930,6 +936,7 @@ section{
 .email-info a:hover { color: var(--accent); }
 
 
+
 .loc-box{
     display: flex;
     gap: 10px;
@@ -1228,6 +1235,16 @@ section{
 /* ===== TABLET (900px and below) ===== */
 @media (max-width: 900px){
 
+    .about-section,
+    .skills-sec,
+    .portfolio-sec,
+    .education-sec,
+    .services-sec,
+    .contact-sec{
+    padding-top:60px;
+    padding-bottom:60px;
+    }
+
     /* Header: shrink side margin so nav has more room before wrapping */
     .nav-container{
         margin-left: 20px;
@@ -1284,6 +1301,7 @@ section{
     /* Skills grid: 4 columns -> 2 */
     .badge-grid{
         grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
     }
 
     .skills{
@@ -1350,10 +1368,34 @@ section{
 /* ===== MOBILE (600px and below) ===== */
 @media (max-width: 600px){
 
+    .about-section,
+    .skills-sec,
+    .portfolio-sec,
+    .education-sec,
+    .services-sec,
+    .contact-sec{
+    padding-top:60px;
+    padding-bottom:60px;
+    }
+
+
     /* Header: allow nav links to wrap to a new line instead of overflowing */
     .header{
         flex-wrap: wrap;
         padding: 10px 15px;
+    }
+
+        .full-box,
+    .about-content,
+    .contact-con-2,
+    .footer-grid{
+        width:100%;
+        overflow:hidden;
+    }
+
+    img{
+        max-width:100%;
+        height:auto;
     }
 
     .nav-container{
@@ -1431,6 +1473,7 @@ section{
     /* Skills: 2 columns -> 1 */
     .badge-grid{
         grid-template-columns: 1fr;
+        gap: 15px;
     }
 
     .skills{
