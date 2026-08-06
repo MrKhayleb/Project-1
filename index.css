@@ -1235,6 +1235,48 @@ section{
    was changed. Search comments to find/remove any block.
    ========================================================= */
 
+/* ===== HAMBURGER MENU — pure CSS, no JavaScript =====
+   Hidden checkbox + label pattern. The checkbox itself is
+   never visible; the label (.hamburger) is display:none by
+   default so it has ZERO effect above the 900px breakpoint —
+   desktop stays exactly as it was. */
+.menu-toggle{
+    display: none;
+}
+
+.hamburger{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 5px;
+    width: 30px;
+    height: 22px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.hamburger .bar{
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: 0.3s ease;
+}
+
+.menu-toggle:checked ~ .hamburger .bar:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle:checked ~ .hamburger .bar:nth-child(2){
+    opacity: 0;
+}
+
+.menu-toggle:checked ~ .hamburger .bar:nth-child(3){
+    transform: translateY(-8px) rotate(-45deg);
+}
+
 /* ===== TABLET (900px and below) ===== */
 @media (max-width: 900px){
 
@@ -1248,14 +1290,38 @@ section{
     padding-bottom:60px;
     }
 
-    /* Header: shrink side margin so nav has more room before wrapping */
+    /* Header: shrink side margin, make room for the hamburger */
     .nav-container{
         margin-left: 20px;
     }
 
+    /* Nav becomes an off-canvas panel, opened by the hamburger */
     .nav-menu{
-        gap: 20px;
-        margin: 10px;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 250px;
+        max-width: 75%;
+        background-color: black;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 30px 24px;
+        gap: 26px;
+        margin: 0;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        overflow-y: auto;
+        z-index: 1000;
+    }
+
+    .menu-toggle:checked ~ .nav-menu{
+        transform: translateX(0);
+    }
+
+    .hamburger{
+        display: flex;
     }
 
     /* Hero: stack image below text instead of side-by-side */
@@ -1301,7 +1367,7 @@ section{
         padding-top: 20px;
     }
 
-    /* Skills grid: 4 columns -> 2 */
+    /* Skills grid: 4 columns -> 2 (stays 2 all the way down) */
     .badge-grid{
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
@@ -1381,14 +1447,11 @@ section{
     padding-bottom:60px;
     }
 
-
-    /* Header: allow nav links to wrap to a new line instead of overflowing */
     .header{
-        flex-wrap: wrap;
         padding: 10px 15px;
     }
 
-        .full-box,
+    .full-box,
     .about-content,
     .contact-con-2,
     .footer-grid{
@@ -1403,23 +1466,6 @@ section{
 
     .nav-container{
         margin-left: 0;
-    }
-
-    .nav-menu{
-        flex-wrap: wrap;
-        gap: 14px;
-        justify-content: center;
-        width: 100%;
-        margin: 10px 0 0;
-    }
-
-    /* Push page content down since header is now taller (wrapped) */
-    body{
-        padding-top: 110px;
-    }
-
-    section{
-        scroll-margin-top: 130px;
     }
 
     /* Hero text sizing */
@@ -1471,12 +1517,6 @@ section{
     .about-img img{
         max-width: 280px;
         height: 280px;
-    }
-
-    /* Skills: 2 columns -> 1 */
-    .badge-grid{
-        grid-template-columns: 1fr;
-        gap: 15px;
     }
 
     .skills{
