@@ -1306,8 +1306,8 @@ section{
         background-color: black;
         flex-direction: column;
         align-items: flex-start;
-        justify-content: center;
-        padding: 30px 24px;
+        justify-content: flex-start;
+        padding: 100px 24px 30px;
         gap: 26px;
         margin: 0;
         transform: translateX(100%);
